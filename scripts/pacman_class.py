@@ -3,7 +3,8 @@ import pygame
 from scripts.load_im import load_image
 
 with open('data/map_size.txt') as map_size:
-    size = width, height = map(int, map_size.readline().split())
+    m = list(map(int, map_size.readline().split()))
+    size = width, height = m[0], m[1]
 
 
 class Pacman(pygame.sprite.Sprite):
@@ -19,6 +20,7 @@ class Pacman(pygame.sprite.Sprite):
         self.key = 1
 
     def click(self, event):
+        """отслеживает нажатия и перемещение героя"""
         if event.type == pygame.KEYDOWN:
             if pygame.key.get_pressed()[pygame.K_UP]:
                 if self.rect.y - 53 > -50:
