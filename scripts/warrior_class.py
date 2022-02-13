@@ -19,11 +19,11 @@ class Warrior(pygame.sprite.Sprite):
         super().__init__(*group)
         self.image = load_image(name)
         self.rect = self.image.get_rect()
-        self.rect.x = 0
+        self.rect.y = 0
         if coin == 1:
-            self.rect.y = 0
+            self.rect.x = 0
         else:
-            self.rect.y = height - 50
+            self.rect.x = width - 50
 
     def correct(self, x_or_y, coin):
         if x_or_y == 'x':
