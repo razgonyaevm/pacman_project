@@ -42,7 +42,7 @@ class Pacman(pygame.sprite.Sprite):
                 if self.rect.y - 53 > -50:
                     self.rect.y -= 53
                 else:
-                    self.rect.y = height
+                    self.rect.y = height - 51
                 if self.key == 1:
                     self.image = pygame.transform.rotate(self.image, 90)
                 elif self.key == 3:
@@ -54,7 +54,7 @@ class Pacman(pygame.sprite.Sprite):
                 if self.rect.y + 53 < height:
                     self.rect.y += 53
                 else:
-                    self.rect.y = -51
+                    self.rect.y = 0
                 if self.key == 1:
                     self.image = pygame.transform.rotate(self.image, 270)
                 elif self.key == 2:
@@ -66,7 +66,7 @@ class Pacman(pygame.sprite.Sprite):
                 if self.rect.x - 50 > -48:
                     self.rect.x -= 50
                 else:
-                    self.rect.x = width
+                    self.rect.x = width - 50
                 if self.key == 1:
                     self.image = pygame.transform.rotate(self.image, 180)
                 elif self.key == 2:
@@ -78,7 +78,7 @@ class Pacman(pygame.sprite.Sprite):
                 if self.rect.x + 50 < width:
                     self.rect.x += 50
                 else:
-                    self.rect.x = -48
+                    self.rect.x = 0
                 if self.key == 2:
                     self.image = pygame.transform.rotate(self.image, 270)
                 elif self.key == 3:
