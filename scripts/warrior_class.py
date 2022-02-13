@@ -69,3 +69,8 @@ class Warrior(pygame.sprite.Sprite):
             else:
                 if self.correct('y', -53):
                     self.rect.y -= 53
+
+    def eat(self, coords):
+        if self.rect.x == coords[0] and self.rect.y == coords[1]:
+            return True
+        return False

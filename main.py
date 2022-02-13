@@ -1,3 +1,5 @@
+import sys
+
 from scripts.draw_setk import draw
 from scripts.block_class import Block
 
@@ -7,6 +9,8 @@ from scripts.pacman_class import Pacman
 from scripts.warrior_class import Warrior
 
 pygame.init()
+with open('data/life.txt') as life_file:
+    life = int(life_file.readline())
 with open('data/map_size.txt') as map_size:
     m = list(map(int, map_size.readline().split()))
     size = width, height = m[0], m[1]
@@ -28,6 +32,7 @@ pacman = Pacman(pac_sprites)
 first_warrior = Warrior("pacman.png", 1, warrior_sprites)  # добавить картинку чупакабрика (ее нет)
 second_warrior = Warrior("pacman.png", 2, warrior_sprites)  # и этому чупакабрику
 running = True
+coin = 3
 
 while running:
     for event in pygame.event.get():
@@ -37,6 +42,15 @@ while running:
             pac.click(event)
     first_warrior.move()
     second_warrior.move()
+    if first_warrior.eat([pacman.rect.x, pacman.rect.y]) or second_warrior.eat([pacman.rect.x, pacman.rect.y]):
+        coin -= 1
+        print(coin)
+    if coin == 0:
+        print("Game Over!")  # рисовать на экране
+        while pygame.event.wait().type != pygame.QUIT:
+            pass
+        pygame.quit()
+        sys.exit()
     screen.fill((0, 0, 0))
     pac_sprites.draw(screen)
     block_sprites.draw(screen)
