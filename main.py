@@ -5,7 +5,9 @@ import pygame
 from scripts.pacman_class import Pacman
 
 pygame.init()
-size = width, height = 1000, 954
+with open('data/map_size.txt') as map_size:
+    m = list(map(int, map_size.readline().split()))
+    size = width, height = m[0], m[1]
 screen = pygame.display.set_mode(size)
 pac_sprites = pygame.sprite.Group()
 

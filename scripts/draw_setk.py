@@ -1,5 +1,7 @@
 import pygame
 
+pygame.init()
+
 
 def draw(color, screen, width, height):
     for i in range(height // 53):

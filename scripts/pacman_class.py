@@ -1,10 +1,13 @@
 import pygame
 
-from main import height, width
 from scripts.load_im import load_image
+
+with open('data/map_size.txt') as map_size:
+    size = width, height = map(int, map_size.readline().split())
 
 
 class Pacman(pygame.sprite.Sprite):
+    pygame.init()
     image = load_image("pacman.png")
 
     def __init__(self, *group):
