@@ -20,7 +20,7 @@ for i in range(len(m)):
         if m[i][j] == '#':
             block = Block(block_sprites)
             block.set_coord(width // len(m[i]) * j, height // len(m) * i)
-        # нужно добавить класс для отрисовки точек, которые есть герой
+        # нужно добавить класс для отрисовки точек, которые ест герой
 
 pacman = Pacman(pac_sprites)
 running = True
