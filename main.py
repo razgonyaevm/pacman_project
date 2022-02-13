@@ -5,6 +5,7 @@ from scripts.block_class import Block
 
 import pygame
 
+from scripts.load_im import load_image
 from scripts.pacman_class import Pacman
 from scripts.warrior_class import Warrior
 
@@ -44,6 +45,14 @@ while running:
     second_warrior.move()
     if first_warrior.eat([pacman.rect.x, pacman.rect.y]) or second_warrior.eat([pacman.rect.x, pacman.rect.y]):
         coin -= 1
+        first_warrior.rect.y = 0
+        first_warrior.rect.x = 0
+        second_warrior.rect.y = 0
+        second_warrior.rect.x = width - 50
+        pacman.rect.x = ((width // 50) // 2) * 50
+        pacman.rect.y = height - 53
+        pacman.key = 1
+        pacman.image = load_image("pacman.png")
         print(coin)
     if coin == 0:
         print("Game Over!")  # рисовать на экране

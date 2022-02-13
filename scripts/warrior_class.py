@@ -6,6 +6,8 @@ with open('data/map_size.txt') as map_size:
     m = list(map(int, map_size.readline().split()))
     size = width, height = m[0], m[1]
 
+timer = 0
+
 with open("maps/first_map.txt") as map_file:
     map_f = list(map(lambda x: x.strip(), map_file.readlines()))
 
@@ -54,21 +56,26 @@ class Warrior(pygame.sprite.Sprite):
                 return False
 
     def move(self):
+        global timer
         mve = ["x", "y"]
-        if random.choice(mve) == 'x':
-            if random.choice([50, -50]) == 50:
-                if self.correct('x', 50):
-                    self.rect.x += 50
+        if timer == 40:
+            timer = 0
+            if random.choice(mve) == 'x':
+                if random.choice([50, -50]) == 50:
+                    if self.correct('x', 50):
+                        self.rect.x += 50
+                else:
+                    if self.correct('x', -50):
+                        self.rect.x -= 50
             else:
-                if self.correct('x', -50):
-                    self.rect.x -= 50
+                if random.choice([53, -53]) == 53:
+                    if self.correct('y', 53):
+                        self.rect.y += 53
+                else:
+                    if self.correct('y', -53):
+                        self.rect.y -= 53
         else:
-            if random.choice([53, -53]) == 53:
-                if self.correct('y', 53):
-                    self.rect.y += 53
-            else:
-                if self.correct('y', -53):
-                    self.rect.y -= 53
+            timer += 1
 
     def eat(self, coords):
         if self.rect.x == coords[0] and self.rect.y == coords[1]:

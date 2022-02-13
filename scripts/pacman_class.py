@@ -18,7 +18,7 @@ class Pacman(pygame.sprite.Sprite):
         super().__init__(*group)
         self.image = Pacman.image
         self.rect = self.image.get_rect()
-        self.rect.x = 50 * 10
+        self.rect.x = ((width // 50) // 2) * 50
         self.rect.y = height - 53
         self.key = 1
 
