@@ -25,8 +25,8 @@ for i in range(len(m)):
         # нужно добавить класс для отрисовки точек, которые ест герой
 
 pacman = Pacman(pac_sprites)
-first_warrior = Warrior("first_warrior.png", 1, warrior_sprites)  # добавить картинку чупакабрика (ее нет)
-second_warrior = Warrior("second_warrior.png", 2, warrior_sprites)  # и этому чупакабрику
+first_warrior = Warrior("pacman.png", 1, warrior_sprites)  # добавить картинку чупакабрика (ее нет)
+second_warrior = Warrior("pacman.png", 2, warrior_sprites)  # и этому чупакабрику
 running = True
 
 while running:
@@ -35,6 +35,8 @@ while running:
             running = False
         for pac in pac_sprites:
             pac.click(event)
+    first_warrior.move()
+    second_warrior.move()
     screen.fill((0, 0, 0))
     pac_sprites.draw(screen)
     block_sprites.draw(screen)
