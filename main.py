@@ -34,21 +34,50 @@ class Pacman(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = width // 2 - 25
         self.rect.y = height - 53
+        self.key = 1
 
     def click(self, event):
         if event.type == pygame.KEYDOWN:
             if pygame.key.get_pressed()[pygame.K_UP]:
-                if self.rect.y - 5 >= 0:
-                    self.rect.y -= 5
+                if self.rect.y - 10 >= 0:
+                    self.rect.y -= 10
+                if self.key == 1:
+                    self.image = pygame.transform.rotate(self.image, 90)
+                elif self.key == 3:
+                    self.image = pygame.transform.rotate(self.image, 270)
+                elif self.key == 4:
+                    self.image = pygame.transform.rotate(self.image, 180)
+                self.key = 2
             elif pygame.key.get_pressed()[pygame.K_DOWN]:
-                if self.rect.y + 5 <= height - 53:
-                    self.rect.y += 5
+                if self.rect.y + 10 <= height - 53:
+                    self.rect.y += 10
+                if self.key == 1:
+                    self.image = pygame.transform.rotate(self.image, 270)
+                elif self.key == 2:
+                    self.image = pygame.transform.rotate(self.image, 180)
+                elif self.key == 3:
+                    self.image = pygame.transform.rotate(self.image, 90)
+                self.key = 4
             elif pygame.key.get_pressed()[pygame.K_LEFT]:
-                if self.rect.x - 5 >= 0:
-                    self.rect.x -= 5
+                if self.rect.x - 10 >= 0:
+                    self.rect.x -= 10
+                if self.key == 1:
+                    self.image = pygame.transform.rotate(self.image, 180)
+                elif self.key == 2:
+                    self.image = pygame.transform.rotate(self.image, 90)
+                elif self.key == 4:
+                    self.image = pygame.transform.rotate(self.image, 270)
+                self.key = 3
             elif pygame.key.get_pressed()[pygame.K_RIGHT]:
-                if self.rect.x + 5 <= width - 50:
-                    self.rect.x += 5
+                if self.rect.x + 10 <= width - 50:
+                    self.rect.x += 10
+                if self.key == 2:
+                    self.image = pygame.transform.rotate(self.image, 270)
+                elif self.key == 3:
+                    self.image = pygame.transform.flip(self.image, True, False)
+                elif self.key == 4:
+                    self.image = pygame.transform.rotate(self.image, 90)
+                self.key = 1
 
 
 pacman = Pacman(pac_sprites)
