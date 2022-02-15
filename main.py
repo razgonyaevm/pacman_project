@@ -1,5 +1,6 @@
 import sys
 
+from scripts.draw_game_over import draw_game_over
 from scripts.draw_setk import draw
 from scripts.block_class import Block
 
@@ -30,10 +31,12 @@ for i in range(len(m)):
         # нужно добавить класс для отрисовки точек, которые ест герой
 
 pacman = Pacman(pac_sprites)
-first_warrior = Warrior("pacman.png", 1, warrior_sprites)  # добавить картинку чупакабрика (ее нет)
-second_warrior = Warrior("pacman.png", 2, warrior_sprites)  # и этому чупакабрику
+first_warrior = Warrior("red_ghost.png", 1, warrior_sprites)
+second_warrior = Warrior("pink_ghost.png", 2, warrior_sprites)
+third_warrior = Warrior("light_blue_ghost.png", 3, warrior_sprites)
+fourth_warrior = Warrior("orange_ghost.png", 4, warrior_sprites)
 running = True
-coin = 3
+coin = life
 
 while running:
     for event in pygame.event.get():
@@ -41,22 +44,21 @@ while running:
             running = False
         for pac in pac_sprites:
             pac.click(event)
-    first_warrior.move()
-    second_warrior.move()
-    if first_warrior.eat([pacman.rect.x, pacman.rect.y]) or second_warrior.eat([pacman.rect.x, pacman.rect.y]):
-        coin -= 1
-        first_warrior.rect.y = 0
-        first_warrior.rect.x = 0
-        second_warrior.rect.y = 0
-        second_warrior.rect.x = width - 50
-        pacman.rect.x = ((width // 50) // 2) * 50
-        pacman.rect.y = height - 53
-        pacman.key = 1
-        pacman.image = load_image("pacman.png")
-        print(coin)
+    for i in [first_warrior, second_warrior, third_warrior, fourth_warrior]:
+        i.move()
+        if i.eat([pacman.rect.x, pacman.rect.y]):
+            coin -= 1
+            pacman.rect.x = ((width // 50) // 2) * 50
+            pacman.rect.y = height - 53
+            pacman.key = 1
+            pacman.image = load_image("pacman.png")
+            for j in [first_warrior, second_warrior, third_warrior, fourth_warrior]:
+                j.go_home(j.coin)
+
     if coin == 0:
-        print("Game Over!")  # рисовать на экране
-        while pygame.event.wait().type != pygame.QUIT:
+        draw_game_over(screen, width, height)
+        pygame.display.flip()
+        while pygame.event.wait().type != pygame.QUIT and pygame.event.wait().type != pygame.KEYDOWN:
             pass
         pygame.quit()
         sys.exit()

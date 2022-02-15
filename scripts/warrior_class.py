@@ -21,11 +21,19 @@ class Warrior(pygame.sprite.Sprite):
         super().__init__(*group)
         self.image = load_image(name)
         self.rect = self.image.get_rect()
-        self.rect.y = 0
+        self.coin = coin
         if coin == 1:
             self.rect.x = 0
-        else:
+            self.rect.y = 0
+        elif coin == 2:
+            self.rect.y = 0
             self.rect.x = width - 50
+        elif coin == 3:
+            self.rect.x = 0
+            self.rect.y = height - 53
+        elif coin == 4:
+            self.rect.x = width - 50
+            self.rect.y = height - 53
 
     def correct(self, x_or_y, coin):
         if x_or_y == 'x':
@@ -81,3 +89,17 @@ class Warrior(pygame.sprite.Sprite):
         if self.rect.x == coords[0] and self.rect.y == coords[1]:
             return True
         return False
+
+    def go_home(self, coin):
+        if coin == 1:
+            self.rect.x = 0
+            self.rect.y = 0
+        elif coin == 2:
+            self.rect.y = 0
+            self.rect.x = width - 50
+        elif coin == 3:
+            self.rect.x = 0
+            self.rect.y = height - 53
+        elif coin == 4:
+            self.rect.x = width - 50
+            self.rect.y = height - 53
