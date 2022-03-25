@@ -15,7 +15,3 @@ class Block(pygame.sprite.Sprite):
     def set_coord(self, x, y):
         self.rect.x = x
         self.rect.y = y
-
-
-class Points(pygame.sprite.Sprite):
-    pygame.init()

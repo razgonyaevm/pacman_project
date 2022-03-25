@@ -17,11 +17,12 @@ def generate_map(name, width, height, coin=100000):
         line += '.'
         for j in range(width - 2):
             if correct < coin:
-                if random.choice([0, 1]) == 0:
-                    line += '.'
-                else:
+                if random.choice([0, 1, 2, 3, 4, 5]) == 0:
                     line += '#'
                     correct += 1
+                else:
+                    line += '.'
+
             else:
                 line += '.'
         line += '.'
@@ -29,7 +30,7 @@ def generate_map(name, width, height, coin=100000):
         line = ''
         correct = 0
     ans.append('.' * width)
-    with open(os.path.join('../maps', name), 'w') as map_file:
+    with open(os.path.join('maps', name), 'w') as map_file:
         for i in range(len(ans) - 1):
             map_file.write(ans[i] + '\n')
         map_file.write(ans[-1])

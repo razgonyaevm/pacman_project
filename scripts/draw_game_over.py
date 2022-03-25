@@ -11,4 +11,3 @@ def draw_game_over(screen, width, height):
     text_h = text.get_height()
     screen.blit(text, (text_x, text_y))
     pygame.draw.rect(screen, (255, 0, 0), (text_x - 10, text_y - 10, text_w + 20, text_h + 20), 1)
-å

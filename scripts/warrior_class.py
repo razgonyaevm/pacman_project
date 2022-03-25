@@ -1,6 +1,7 @@
 import random
 
 import pygame
+from scripts.load_im import load_image
 
 with open('data/map_size.txt') as map_size:
     m = list(map(int, map_size.readline().split()))
@@ -8,17 +9,14 @@ with open('data/map_size.txt') as map_size:
 
 timer = 0
 
-with open("maps/first_map.txt") as map_file:
-    map_f = list(map(lambda x: x.strip(), map_file.readlines()))
-
-from scripts.load_im import load_image
-
 
 class Warrior(pygame.sprite.Sprite):
     pygame.init()
 
-    def __init__(self, name, coin, *group):
+    def __init__(self, name_file, name, coin, *group):
         super().__init__(*group)
+        with open(f"maps/{name_file}") as map_file:
+            self.map_f = list(map(lambda x: x.strip(), map_file.readlines()))
         self.image = load_image(name)
         self.rect = self.image.get_rect()
         self.coin = coin
@@ -39,26 +37,26 @@ class Warrior(pygame.sprite.Sprite):
         if x_or_y == 'x':
             if coin == 50:
                 if self.rect.x + 50 < width - 50:
-                    if map_f[self.rect.y // 53][(self.rect.x + 50) // 50] != '#':
+                    if self.map_f[self.rect.y // 53][(self.rect.x + 50) // 50] != '#':
                         return True
                     return False
                 return False
             elif coin == -50:
                 if self.rect.x - 50 > 0:
-                    if map_f[self.rect.y // 53][(self.rect.x - 50) // 50] != '#':
+                    if self.map_f[self.rect.y // 53][(self.rect.x - 50) // 50] != '#':
                         return True
                     return False
                 return False
         else:
             if coin == 53:
                 if self.rect.y + 53 < height - 53:
-                    if map_f[(self.rect.y + 53) // 53][self.rect.x // 50] != "#":
+                    if self.map_f[(self.rect.y + 53) // 53][self.rect.x // 50] != "#":
                         return True
                     return False
                 return False
             elif coin == -53:
                 if self.rect.y - 53 > 0:
-                    if map_f[(self.rect.y - 53) // 53][self.rect.x // 50] != '#':
+                    if self.map_f[(self.rect.y - 53) // 53][self.rect.x // 50] != '#':
                         return True
                     return False
                 return False
