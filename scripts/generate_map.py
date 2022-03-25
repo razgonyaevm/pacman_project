@@ -30,11 +30,11 @@ def generate_map(name, width, height, coin=100000):
         line = ''
         correct = 0
     ans.append('.' * width)
-    with open(os.path.join('maps', name), 'w') as map_file:
+    with open(f'../maps/{name}', 'w') as map_file:
         for i in range(len(ans) - 1):
             map_file.write(ans[i] + '\n')
         map_file.write(ans[-1])
 
 
 if __name__ == '__main__':
-    generate_map('random_map.txt', 20, 18)
+    generate_map('new_map.txt', 20, 18, 5)
