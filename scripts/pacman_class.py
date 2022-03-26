@@ -8,6 +8,7 @@ with open('data/map_size.txt') as map_size:
 
 
 class Pacman(pygame.sprite.Sprite):
+    """Класс главного героя"""
     pygame.init()
     image = load_image("pacman.png")
 

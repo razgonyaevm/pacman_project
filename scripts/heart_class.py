@@ -4,6 +4,7 @@ from scripts.load_im import load_image
 
 
 class Heart(pygame.sprite.Sprite):
+    """отрисовка сердец в правой части окна, обозначающих количество оставшихся жизней"""
     pygame.init()
     image = load_image("heart.png")
 

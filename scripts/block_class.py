@@ -4,6 +4,7 @@ from scripts.load_im import load_image
 
 
 class Block(pygame.sprite.Sprite):
+    """Расставляет блоки на карте"""
     pygame.init()
     image = load_image("block.png")
 

@@ -8,6 +8,7 @@ with open('data/map_size.txt') as map_size:
 
 
 class Coin(pygame.sprite.Sprite):
+    """Размечает точки на игровом окне, который поедает герой"""
     image = load_image("coin.png")
 
     def __init__(self, *group):

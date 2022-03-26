@@ -11,6 +11,7 @@ timer = 0
 
 
 class Warrior(pygame.sprite.Sprite):
+    """Класс для духов"""
     pygame.init()
 
     def __init__(self, name_file, name, coin, *group):

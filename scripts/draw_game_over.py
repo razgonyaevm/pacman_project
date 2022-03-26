@@ -2,6 +2,7 @@ import pygame.font
 
 
 def draw_game_over(screen, width, height):
+    """отрисовка экрана после поражения пользователя"""
     screen.fill((0, 0, 0))
     font = pygame.font.Font(None, 50)
     text = font.render("GAME OVER!", True, (100, 255, 100))

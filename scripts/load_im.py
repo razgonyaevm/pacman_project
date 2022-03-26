@@ -8,6 +8,7 @@ screen = pygame.display.set_mode((100, 100))
 
 
 def load_image(name, colorkey=None):
+    """функция для загрузки изображений из директории data"""
     fullname = os.path.join('data', name)
     if not os.path.isfile(fullname):
         print(f"Файл с изображением '{fullname}' не найден")
